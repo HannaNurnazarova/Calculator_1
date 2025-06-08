@@ -1,5 +1,7 @@
 package Main;
+
 import model.ComplexNumber;
+import Calculator.Calculator;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,20 +11,23 @@ public class Main {
         System.out.println("c1: " + c1);
         System.out.println("c2: " + c2);
 
-        ComplexNumber sum = c1.add(c2);
+        Calculator calculator = new Calculator();
+
+        ComplexNumber sum = calculator.calculate(c1, c2, "+");
         System.out.println("Sum: " + sum);
 
-        ComplexNumber diff = c1.subtract(c2);
-        System.out.println("Difference: " + diff);
 
-        ComplexNumber product = c1.multiply(c2);
+        ComplexNumber product = calculator.calculate(c1, c2, "*");
         System.out.println("Product: " + product);
 
         try {
-            ComplexNumber quotient = c1.divide(c2);
+            ComplexNumber quotient = calculator.calculate(c1, c2, "/");
             System.out.println("Quotient: " + quotient);
         } catch (ArithmeticException e) {
             System.out.println("Error: " + e.getMessage());
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage()); 
         }
     }
 }
